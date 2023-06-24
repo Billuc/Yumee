@@ -1,0 +1,1 @@
+from .base_metadata_embedder import BaseMetadataEmbedder

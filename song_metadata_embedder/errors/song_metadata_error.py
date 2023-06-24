@@ -1,0 +1,2 @@
+class SongMetadataError(Exception):
+    pass
