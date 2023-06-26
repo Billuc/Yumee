@@ -6,6 +6,8 @@ from mutagen.mp4 import MP4Cover, MP4
 from song_metadata_embedder.classes import SongMetadata, TagPreset
 from .abstract_metadata_embedder import AbstractMetadataEmbedder
 
+__all__ = ["M4AMetadataEmbedder"]
+
 
 class M4AMetadataEmbedder(AbstractMetadataEmbedder[MP4]):
     @property
@@ -56,7 +58,7 @@ class M4AMetadataEmbedder(AbstractMetadataEmbedder[MP4]):
     def _embed_cover(self, audio_file: MP4, metadata: SongMetadata) -> MP4:
         if metadata.cover_url is None:
             return audio_file
-        
+
         try:
             cover_data = requests.get(metadata.cover_url, timeout=10).content
         except Exception:
@@ -71,6 +73,6 @@ class M4AMetadataEmbedder(AbstractMetadataEmbedder[MP4]):
     def _embed_lyrics(self, audio_file: MP4, metadata: SongMetadata) -> MP4:
         if metadata.lyrics is None:
             return audio_file
-        
-        audio_file[self.tag_preset.lyrics] = [metadata.lyrics] 
+
+        audio_file[self.tag_preset.lyrics] = [metadata.lyrics]
         return audio_file

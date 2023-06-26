@@ -13,6 +13,8 @@ from .abstract_metadata_embedder import AbstractMetadataEmbedder
 
 LRC_REGEX = re.compile(r"(\[\d{2}:\d{2}.\d{2,3}\])")
 
+__all__ = ["Mp3MetadataEmbedder"]
+
 
 class Mp3MetadataEmbedder(AbstractMetadataEmbedder[MP3]):
     @property
@@ -45,14 +47,14 @@ class Mp3MetadataEmbedder(AbstractMetadataEmbedder[MP3]):
         return EasyMP3(self._path)
 
     def _embed_specific(self, audio_file: MP3, metadata: SongMetadata) -> MP3:
-        audio_file[
-            self.tag_preset.tracknumber
-        ] = [f"{str(metadata.track_number)}/{str(metadata.track_count)}"]
+        audio_file[self.tag_preset.tracknumber] = [
+            f"{str(metadata.track_number)}/{str(metadata.track_count)}"
+        ]
 
-        audio_file[
-            self.tag_preset.discnumber
-        ] = [f"{str(metadata.disc_number)}/{str(metadata.disc_count)}"]
-        
+        audio_file[self.tag_preset.discnumber] = [
+            f"{str(metadata.disc_number)}/{str(metadata.disc_count)}"
+        ]
+
         audio_file.save(v2_version=3)
         audio_file = MP3(self._path)
 

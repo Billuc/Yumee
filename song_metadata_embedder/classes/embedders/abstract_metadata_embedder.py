@@ -1,13 +1,13 @@
 import abc
 from pathlib import Path
-from typing import Generic, Callable, TypeVar
+from typing import Generic, TypeVar
 
 from mutagen._file import FileType
 
 from song_metadata_embedder.classes import SongMetadata, TagPreset, EmbedMetadataCommand
-from song_metadata_embedder.interfaces import BaseMetadataEmbedder
 from song_metadata_embedder.errors import SongMetadataFileError
 
+__all__ = ["AbstractMetadataEmbedder"]
 
 T = TypeVar("T", bound=FileType)
 
@@ -18,9 +18,7 @@ class AbstractMetadataEmbedder(Generic[T], metaclass=abc.ABCMeta):
     def tag_preset(self) -> TagPreset:
         raise NotImplementedError
 
-    def embed(
-        self, request: EmbedMetadataCommand
-    ) -> None:
+    def embed(self, request: EmbedMetadataCommand) -> None:
         try:
             audio_file = self._load_file(request.path)
         except Exception as ex:

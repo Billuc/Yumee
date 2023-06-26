@@ -5,6 +5,8 @@ from song_metadata_embedder.classes import SongMetadata, EmbedMetadataCommand
 from song_metadata_embedder.di import add_song_metadata_embedder
 from song_metadata_embedder.interfaces import BaseMetadataEmbedder
 
+__all__ = ["SongMetadataEmbedder"]
+
 
 class SongMetadataEmbedder:
     def __init__(self) -> None:

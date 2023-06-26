@@ -6,8 +6,9 @@ from mutagen.flac import Picture
 from mutagen.oggvorbis import OggVorbis
 
 from song_metadata_embedder.classes import SongMetadata, TagPreset
-from song_metadata_embedder.errors import SongMetadataFileError
 from .abstract_metadata_embedder import AbstractMetadataEmbedder
+
+__all__ = ["OggMetadataEmbedder"]
 
 
 class OggMetadataEmbedder(AbstractMetadataEmbedder[OggVorbis]):

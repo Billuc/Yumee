@@ -14,6 +14,8 @@ from song_metadata_embedder.classes import (
 )
 from song_metadata_embedder.interfaces import BaseMetadataEmbedder
 
+__all__ = ["add_song_metadata_embedder"]
+
 
 def add_song_metadata_embedder(services: ServiceCollection) -> ServiceCollection:
     services.register(FlacMetadataEmbedder).as_factory().with_self()

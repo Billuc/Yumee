@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
+__all__ = ["SongMetadata"]
+
+
 @dataclass
 class SongMetadata:
     title: str
@@ -23,4 +26,3 @@ class SongMetadata:
     publisher: Optional[str]
     popularity: Optional[int]
     copyright_text: Optional[str]
-    

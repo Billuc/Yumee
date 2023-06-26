@@ -6,6 +6,8 @@ from mutagen.flac import Picture, FLAC
 from song_metadata_embedder.classes import SongMetadata, TagPreset
 from .abstract_metadata_embedder import AbstractMetadataEmbedder
 
+__all__ = ["FlacMetadataEmbedder"]
+
 
 class FlacMetadataEmbedder(AbstractMetadataEmbedder[FLAC]):
     @property

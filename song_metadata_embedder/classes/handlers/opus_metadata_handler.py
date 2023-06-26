@@ -1,8 +1,12 @@
 from typing import Any
 
-from song_metadata_embedder.classes.embedders import OpusMetadataEmbedder, AbstractMetadataEmbedder
+from song_metadata_embedder.classes.embedders import (
+    OpusMetadataEmbedder,
+    AbstractMetadataEmbedder,
+)
 from song_metadata_embedder.classes.handlers import AbstractMetadataHandler
 
+__all__ = ["OpusMetadataEmbedder"]
 
 
 class OpusMetadataHandler(AbstractMetadataHandler):
@@ -12,7 +16,7 @@ class OpusMetadataHandler(AbstractMetadataHandler):
     @property
     def encoding(self) -> str:
         return "opus"
-    
+
     @property
     def embedder(self) -> AbstractMetadataEmbedder[Any]:
         return self._embedder

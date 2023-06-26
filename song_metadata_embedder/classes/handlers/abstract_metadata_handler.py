@@ -6,6 +6,7 @@ from song_metadata_embedder.classes import EmbedMetadataCommand
 from song_metadata_embedder.classes.embedders import AbstractMetadataEmbedder
 from song_metadata_embedder.interfaces import BaseMetadataEmbedder
 
+__all__ = ["AbstractMetadataHandler"]
 
 
 class AbstractMetadataHandler(BaseMetadataEmbedder, metaclass=abc.ABCMeta):
@@ -13,7 +14,7 @@ class AbstractMetadataHandler(BaseMetadataEmbedder, metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def encoding(self) -> str:
         raise NotImplementedError
-    
+
     @property
     @abc.abstractmethod
     def embedder(self) -> AbstractMetadataEmbedder[Any]:

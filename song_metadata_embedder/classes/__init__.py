@@ -15,3 +15,19 @@ from .handlers import (
     OggMetadataHandler,
     OpusMetadataHandler,
 )
+
+__all__ = [
+    "SongMetadata",
+    "TagPreset",
+    "EmbedMetadataCommand",
+    "FlacMetadataEmbedder",
+    "M4AMetadataEmbedder",
+    "Mp3MetadataEmbedder",
+    "OggMetadataEmbedder",
+    "OpusMetadataEmbedder",
+    "FlacMetadataHandler",
+    "M4AMetadataHandler",
+    "Mp3MetadataHandler",
+    "OggMetadataHandler",
+    "OpusMetadataHandler",
+]

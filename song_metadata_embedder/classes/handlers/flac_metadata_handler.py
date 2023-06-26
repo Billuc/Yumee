@@ -1,8 +1,12 @@
 from typing import Any
 
-from song_metadata_embedder.classes.embedders import FlacMetadataEmbedder, AbstractMetadataEmbedder
+from song_metadata_embedder.classes.embedders import (
+    FlacMetadataEmbedder,
+    AbstractMetadataEmbedder,
+)
 from song_metadata_embedder.classes.handlers import AbstractMetadataHandler
 
+__all__ = ["FlacMetadataHandler"]
 
 
 class FlacMetadataHandler(AbstractMetadataHandler):
@@ -12,7 +16,7 @@ class FlacMetadataHandler(AbstractMetadataHandler):
     @property
     def encoding(self) -> str:
         return "flac"
-    
+
     @property
     def embedder(self) -> AbstractMetadataEmbedder[Any]:
         return self._embedder

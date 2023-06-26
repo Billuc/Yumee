@@ -8,6 +8,8 @@ from mutagen.oggopus import OggOpus
 from song_metadata_embedder.classes import SongMetadata, TagPreset
 from .abstract_metadata_embedder import AbstractMetadataEmbedder
 
+__all__ = ["OpusMetadataEmbedder"]
+
 
 class OpusMetadataEmbedder(AbstractMetadataEmbedder[OggOpus]):
     @property
@@ -80,6 +82,6 @@ class OpusMetadataEmbedder(AbstractMetadataEmbedder[OggOpus]):
     def _embed_lyrics(self, audio_file: OggOpus, metadata: SongMetadata) -> OggOpus:
         if metadata.lyrics is None:
             return audio_file
-        
+
         audio_file[self.tag_preset.lyrics] = metadata.lyrics
         return audio_file
