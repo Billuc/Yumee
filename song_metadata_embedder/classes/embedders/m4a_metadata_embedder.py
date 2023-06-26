@@ -34,10 +34,6 @@ class M4AMetadataEmbedder(AbstractMetadataEmbedder[M4A]):
             woas="----:song-metadata-embedder:WOAS",
         )
 
-    @property
-    def encoding(self) -> str:
-        return "m4a"
-
     def _load_file(self, path: Path) -> M4A:
         return M4A(str(path.resolve()))
 

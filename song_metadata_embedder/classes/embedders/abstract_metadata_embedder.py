@@ -12,29 +12,19 @@ from song_metadata_embedder.errors import SongMetadataFileError
 T = TypeVar("T", bound=FileType)
 
 
-class AbstractMetadataEmbedder(BaseMetadataEmbedder, Generic[T], metaclass=abc.ABCMeta):
+class AbstractMetadataEmbedder(Generic[T], metaclass=abc.ABCMeta):
     @property
     @abc.abstractmethod
     def tag_preset(self) -> TagPreset:
         raise NotImplementedError
 
-    @property
-    @abc.abstractmethod
-    def encoding(self) -> str:
-        raise NotImplementedError
-
-    def _handle(
-        self, request: EmbedMetadataCommand, next: Callable[[EmbedMetadataCommand], None]
+    def embed(
+        self, request: EmbedMetadataCommand
     ) -> None:
-        encoding = request.path.suffix[1:]
-
-        if encoding != self.encoding:
-            return next(request)
-
         try:
             audio_file = self._load_file(request.path)
         except Exception as ex:
-            raise SongMetadataFileError(ex)
+            raise SongMetadataFileError(ex) from ex
 
         audio_file = self._embed_metadata(audio_file, request.metadata)
         audio_file = self._embed_specific(audio_file, request.metadata)
@@ -49,21 +39,20 @@ class AbstractMetadataEmbedder(BaseMetadataEmbedder, Generic[T], metaclass=abc.A
 
     def _embed_metadata(self, audio_file: T, metadata: SongMetadata) -> T:
         audio_file[self.tag_preset.artist] = metadata.artists
-        audio_file[self.tag_preset.albumartist] = (
+        audio_file[self.tag_preset.albumartist] = [
             metadata.album_artist if metadata.album_artist else metadata.artist
-        )
-        audio_file[self.tag_preset.title] = metadata.title
-        audio_file[self.tag_preset.date] = metadata.date
-        audio_file[self.tag_preset.encodedby] = metadata.publisher
+        ]
+        audio_file[self.tag_preset.title] = [metadata.title]
+        audio_file[self.tag_preset.date] = [metadata.date]
+        audio_file[self.tag_preset.encodedby] = [metadata.publisher]
 
         if metadata.album_name:
-            audio_file[self.tag_preset.album] = metadata.album_name
+            audio_file[self.tag_preset.album] = [metadata.album_name]
         if metadata.genres:
             audio_file[self.tag_preset.genre] = metadata.genres[0].title()
         if metadata.copyright_text:
-            audio_file[self.tag_preset.copyright] = metadata.copyright_text
+            audio_file[self.tag_preset.copyright] = [metadata.copyright_text]
 
-        # copyright text
         return audio_file
 
     @abc.abstractmethod

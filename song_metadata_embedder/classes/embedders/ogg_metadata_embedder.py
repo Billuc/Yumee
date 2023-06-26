@@ -3,7 +3,7 @@ from pathlib import Path
 
 import requests
 from mutagen._file import FileType, File
-from mutagen.flac import Picture, FLAC
+from mutagen.flac import Picture
 
 from song_metadata_embedder.classes import SongMetadata, TagPreset
 from song_metadata_embedder.errors import SongMetadataFileError
@@ -35,10 +35,6 @@ class OggMetadataEmbedder(AbstractMetadataEmbedder[FileType]):
             explicit="explicit",
             woas="woas",
         )
-
-    @property
-    def encoding(self) -> str:
-        return "ogg"
 
     def _load_file(self, path: Path) -> FileType:
         audio_file = File(str(path.resolve()))

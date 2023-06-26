@@ -35,10 +35,6 @@ class OpusMetadataEmbedder(AbstractMetadataEmbedder[OggOpus]):
             woas="woas",
         )
 
-    @property
-    def encoding(self) -> str:
-        return "opus"
-
     def _load_file(self, path: Path) -> OggOpus:
         return OggOpus(str(path.resolve()))
 

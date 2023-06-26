@@ -40,10 +40,6 @@ class Mp3MetadataEmbedder(AbstractMetadataEmbedder[MP3]):
             woas="woas",
         )
 
-    @property
-    def encoding(self) -> str:
-        return "mp3"
-
     def _load_file(self, path: Path) -> MP3:
         return MP3(str(path.resolve()))
 
