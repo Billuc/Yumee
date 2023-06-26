@@ -2,15 +2,15 @@ import base64
 from pathlib import Path
 
 import requests
-from mutagen._file import FileType, File
 from mutagen.flac import Picture
+from mutagen.oggvorbis import OggVorbis
 
 from song_metadata_embedder.classes import SongMetadata, TagPreset
 from song_metadata_embedder.errors import SongMetadataFileError
 from .abstract_metadata_embedder import AbstractMetadataEmbedder
 
 
-class OggMetadataEmbedder(AbstractMetadataEmbedder[FileType]):
+class OggMetadataEmbedder(AbstractMetadataEmbedder[OggVorbis]):
     @property
     def tag_preset(self) -> TagPreset:
         return TagPreset(
@@ -36,15 +36,10 @@ class OggMetadataEmbedder(AbstractMetadataEmbedder[FileType]):
             woas="woas",
         )
 
-    def _load_file(self, path: Path) -> FileType:
-        audio_file = File(str(path.resolve()))
+    def _load_file(self, path: Path) -> OggVorbis:
+        return OggVorbis(str(path.resolve()))
 
-        if audio_file is None:
-            raise SongMetadataFileError(f"Unrecognized file format for {path}")
-
-        return audio_file
-
-    def _embed_specific(self, audio_file: FileType, metadata: SongMetadata) -> FileType:
+    def _embed_specific(self, audio_file: OggVorbis, metadata: SongMetadata) -> OggVorbis:
         if metadata.download_url is not None:
             audio_file[self.tag_preset.comment] = metadata.download_url
 
@@ -61,7 +56,7 @@ class OggMetadataEmbedder(AbstractMetadataEmbedder[FileType]):
 
         return audio_file
 
-    def _embed_cover(self, audio_file: FileType, metadata: SongMetadata) -> FileType:
+    def _embed_cover(self, audio_file: OggVorbis, metadata: SongMetadata) -> OggVorbis:
         if metadata.cover_url is None:
             return audio_file
 
@@ -83,7 +78,7 @@ class OggMetadataEmbedder(AbstractMetadataEmbedder[FileType]):
 
         return audio_file
 
-    def _embed_lyrics(self, audio_file: FileType, metadata: SongMetadata) -> FileType:
+    def _embed_lyrics(self, audio_file: OggVorbis, metadata: SongMetadata) -> OggVorbis:
         if metadata.lyrics is None:
             return audio_file
 

@@ -3,7 +3,7 @@ import re
 from typing import cast
 
 import requests
-from mutagen.mp3 import MP3
+from mutagen.mp3 import MP3, EasyMP3
 from mutagen.id3 import ID3
 from mutagen.id3._frames import APIC, COMM, WOAS, USLT, SYLT
 from mutagen.id3._specs import Encoding
@@ -41,16 +41,20 @@ class Mp3MetadataEmbedder(AbstractMetadataEmbedder[MP3]):
         )
 
     def _load_file(self, path: Path) -> MP3:
-        return MP3(str(path.resolve()))
+        self._path = str(path.resolve())
+        return EasyMP3(self._path)
 
     def _embed_specific(self, audio_file: MP3, metadata: SongMetadata) -> MP3:
         audio_file[
             self.tag_preset.tracknumber
-        ] = f"{str(metadata.track_number)}/{str(metadata.track_count)}"
+        ] = [f"{str(metadata.track_number)}/{str(metadata.track_count)}"]
 
         audio_file[
             self.tag_preset.discnumber
-        ] = f"{str(metadata.disc_number)}/{str(metadata.disc_count)}"
+        ] = [f"{str(metadata.disc_number)}/{str(metadata.disc_count)}"]
+        
+        audio_file.save(v2_version=3)
+        audio_file = MP3(self._path)
 
         tags = cast(ID3, audio_file.tags)
         tags.add(WOAS(encoding=3, url=metadata.url))
