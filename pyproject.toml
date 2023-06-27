@@ -5,8 +5,9 @@ description = "A generic tool to embed a song's data into a song file"
 authors = ["Billuc <billuc@hotmail.fr>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "song_metadata_embedder"}]
 
-keywords = ["song metadata", "song", "metadata", "metadata embedder", "python", "mp3", "m4a", "ogg", "flac"]
+keywords = ["song metadata", "song", "metadata", "metadata embedder", "python", "mp3", "m4a", "ogg", "flac", "opus"]
 
 homepage = "https://github.com/Billuc/song-metadata-embedder"
 repository = "https://github.com/Billuc/song-metadata-embedder"
@@ -25,7 +26,6 @@ classifiers = [
 ]
 
 include = ["song_metadata_embedder/py.typed"]
-packages = [{include = "song_metadata_embedder"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
