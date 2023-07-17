@@ -91,3 +91,16 @@ with song_file_provider.exec(path) as song_file:
 ## Inspirations
 
 This library is partially inspired by spotDL's [spotify-downloader](https://github.com/spotDL/spotify-downloader) and utilises [mutagen](https://mutagen.readthedocs.io/en/latest/).
+
+## TODO
+
+This library isn't stable yet and a lot of things can still be improved.
+If there is something you want to see added or if something does not work as you want it to, feel free to open an issue.
+
+Here is a list of features I have in mind and will be working on :
+
+- Generate SongMetadata from a SongFile
+- Support Wav
+- ISRC tag
+- MP3 separator support
+- Popularity tag (ID3)
