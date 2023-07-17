@@ -18,14 +18,14 @@ class BaseSongFile(Protocol):
     @abc.abstractmethod
     def save(self) -> None:
         ...
-        
+
     # Title
-    
+
     @property
     @abc.abstractmethod
     def title(self) -> Optional[List[str]]:
         ...
-        
+
     @title.setter
     @abc.abstractmethod
     def title(self, new_title: Optional[List[str]]) -> None:

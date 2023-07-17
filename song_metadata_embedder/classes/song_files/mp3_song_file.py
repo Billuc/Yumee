@@ -1,3 +1,5 @@
+__all__ = ["Mp3SongFile"]
+
 from typing import List, Optional, Tuple, cast
 from contextlib import contextmanager
 import requests

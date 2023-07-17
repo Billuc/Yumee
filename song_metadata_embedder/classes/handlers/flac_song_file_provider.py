@@ -11,6 +11,6 @@ class FlacSongFileProvider(AbstractSongFileProvider):
     @property
     def encoding(self) -> str:
         return "flac"
-    
+
     def _new_song_file(self, path: Path) -> BaseSongFile:
         return FlacSongFile(path)

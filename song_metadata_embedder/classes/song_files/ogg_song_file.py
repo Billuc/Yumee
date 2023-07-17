@@ -1,5 +1,6 @@
+__all__ = ["OggSongFile"]
+
 import base64
-from pathlib import Path
 from typing import List, Optional, Tuple
 from mutagen.flac import Picture
 from mutagen.oggvorbis import OggVorbis

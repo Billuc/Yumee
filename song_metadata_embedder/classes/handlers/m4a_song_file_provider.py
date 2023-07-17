@@ -11,6 +11,6 @@ class M4ASongFileProvider(AbstractSongFileProvider):
     @property
     def encoding(self) -> str:
         return "m4a"
-    
+
     def _new_song_file(self, path: Path) -> BaseSongFile:
         return M4ASongFile(path)

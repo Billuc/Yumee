@@ -11,6 +11,6 @@ class OpusSongFileProvider(AbstractSongFileProvider):
     @property
     def encoding(self) -> str:
         return "opus"
-    
+
     def _new_song_file(self, path: Path) -> BaseSongFile:
         return OpusSongFile(path)

@@ -1,4 +1,5 @@
-from pathlib import Path
+__all__ = ["M4ASongFile"]
+
 from typing import List, Optional, Tuple, cast
 from mutagen.mp4 import MP4, MP4Cover
 import requests

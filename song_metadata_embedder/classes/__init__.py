@@ -7,20 +7,13 @@ from .handlers import (
     M4ASongFileProvider,
     Mp3SongFileProvider,
     OggSongFileProvider,
-    OpusSongFileProvider
+    OpusSongFileProvider,
 )
-from .song_files import (
-    FlacSongFile,
-    M4ASongFile,
-    Mp3SongFile,
-    OggSongFile,
-    OpusSongFile
-)
+from .song_files import FlacSongFile, M4ASongFile, Mp3SongFile, OggSongFile, OpusSongFile
 
 __all__ = [
     "SongMetadata",
     "TagPreset",
-    "EmbedMetadataCommand",
     "LRCHelper",
     "FlacSongFile",
     "M4ASongFile",

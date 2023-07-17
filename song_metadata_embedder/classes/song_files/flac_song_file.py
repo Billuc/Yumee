@@ -1,4 +1,5 @@
-from pathlib import Path
+__all__ = ["FlacSongFile"]
+
 from typing import List, Optional, Tuple
 from mutagen.flac import FLAC, Picture
 import requests
