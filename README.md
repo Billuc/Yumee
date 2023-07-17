@@ -1,6 +1,7 @@
-# Song Metadata Embedder
+# Yumee
 
-**Embed metadata into your music files, whatever the type**
+**Embed metadata into your music files, whatever the type**  
+Yumee stands for *Yet Unother MEtadata Embedder*
 
 ## Features
 
@@ -15,7 +16,7 @@
 ### Pip
 
 ```
-pip install song-metadata-embedder
+pip install yumee
 ```
 
 ### Poetry
@@ -23,7 +24,7 @@ pip install song-metadata-embedder
 [Poetry](https://python-poetry.org/) is a Python dependency management and packaging tool. I actually use it for this project.
 
 ```
-poetry add song-metadata-embedder
+poetry add yumee
 ```
 
 ## Usage
@@ -32,47 +33,61 @@ There are 2 ways to use this library : using the SongMetadataEmbedder object or 
 
 ### Using SongMetadataEmbedder
 
-The library exposes the SongMetadataEmbedder class. This class has 1 method : `embed`.
+The library exposes the SongMetadataEmbedder class. This class has 2 method : `open_file` and `embed`.
 
-This method detects the type of the file you want to modify and sets the metadata accordingly.
+`open_file` opens an audio file at a provided path and returns a `BaseSongFile` to manipulate its metadata. `embed` opens an audio file and modifies its metadata according to the data provided.
 
-**Example :**
+**Example 1 :**
 
 ```python
 from pathlib import Path
-from song_metadata_embedder import SongMetadataEmbedder, SongMetadata
+from yumee import SongMetadataEmbedder
 
 embedder = SongMetadataEmbedder()
 path = Path("path/to/file.mp3")
-metadata = SongMetadata(...)
+
+with embedder.open_file(path) as song_file:
+    song_file.title = "New Title"
+```
+
+*It is recommended to use 'open_file' with the 'with' statement as it will ensure that the modifications are saved as you exit the block. Otherwise, you have to make sure to call 'save' to save the modifications.*
+
+**Example 2 :**
+
+```python
+from pathlib import Path
+from yumee import SongMetadataEmbedder, SongMetadata
+
+embedder = SongMetadataEmbedder()
+path = Path("path/to/file.mp3")
+metadata = SongMetadata(title="New Title")
 
 embedder.embed(path, metadata)
 ```
 
 ### Using DI
 
-The library also exposes a `BaseMetadataEmbedder` interface and a `add_song_metadata_embedder` function for [Taipan-DI](https://github.com/Billuc/Taipan-DI).
+The library also exposes a `BaseSongFileProvider` interface and a `add_yumee` function for [Taipan-DI](https://github.com/Billuc/Taipan-DI).
 
-In this function, the embedders are registered as a Pipeline. All you need to do is to resolve the pipeline and execute it.
+In this function, SongFileProviders are registered as a Pipeline. Each SongFileProvider correspond to a specific file type and generates a `BaseSongFile`. Resolve the pipeline and execute it to have a `BaseSongFile` you can then manipulate.
 
 **Example :**
 
 ```python
-from song_metadata_embedder import BaseMetadataEmbedder, add_song_metadata_embedder, SongMetadata, EmbedMetadataCommand
+from yumee import BaseSongFileProvider, add_yumee
 from taipan_di import DependencyCollection
 
 services = DependencyCollection()
-add_song_metadata_embedder(services)
+add_yumee(services)
 provider = services.build()
 
-embedder = provider.resolve(BaseMetadataEmbedder)
+song_file_provider = provider.resolve(BaseSongFileProvider)
 path = Path("path/to/file.mp3")
-metadata = SongMetadata(...)
-command = EmbedMetadataCommand(path, metadata)
 
-embedder.exec(command)
+with song_file_provider.exec(path) as song_file:
+    ...
 ```
 
 ## Inspirations
 
-This library is partially based on spotDL's [spotify-downloader](https://github.com/spotDL/spotify-downloader).
+This library is partially inspired by spotDL's [spotify-downloader](https://github.com/spotDL/spotify-downloader) and utilises [mutagen](https://mutagen.readthedocs.io/en/latest/).

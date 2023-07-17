@@ -1,17 +1,17 @@
 [tool.poetry]
-name = "song-metadata-embedder"
-version = "0.0.1"
-description = "A generic tool to embed a song's data into a song file"
+name = "Yumee"
+version = "0.0.2"
+description = "Yet Unother MEtadata Embedder"
 authors = ["Billuc <billuc@hotmail.fr>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "song_metadata_embedder"}]
+packages = [{include = "yumee"}]
 
-keywords = ["song metadata", "song", "metadata", "metadata embedder", "python", "mp3", "m4a", "ogg", "flac", "opus"]
+keywords = ["yumee", "song metadata", "song", "metadata", "metadata embedder", "python", "mp3", "m4a", "ogg", "flac", "opus"]
 
-homepage = "https://github.com/Billuc/song-metadata-embedder"
-repository = "https://github.com/Billuc/song-metadata-embedder"
-documentation = "https://github.com/Billuc/song-metadata-embedder"
+homepage = "https://github.com/Billuc/Yumee"
+repository = "https://github.com/Billuc/Yumee"
+documentation = "https://github.com/Billuc/Yumee"
 
 classifiers = [
     "Intended Audience :: End Users/Desktop",
@@ -25,7 +25,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 
-include = ["song_metadata_embedder/py.typed"]
+include = ["yumee/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -38,6 +38,7 @@ pytest = "^7.4.0"
 mypy = "^1.4.0"
 black = "^23.3.0"
 pytest-cov = "^4.1.0"
+vcrpy = "^5.0.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -45,7 +46,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
 pythonpath = [
-  ".", "song_metadata_embedder"
+  ".", "yumee"
 ]
 
 [tool.black]
