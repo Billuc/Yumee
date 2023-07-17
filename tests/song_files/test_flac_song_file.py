@@ -1,16 +1,17 @@
 from pathlib import Path
-from pytest import fixture
 
 from mutagen.flac import FLAC
 from tests.test_with_temp_file import temp_file
+from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import SongMetadata, FlacSongFile
+from song_metadata_embedder.classes import FlacSongFile
 from song_metadata_embedder.errors import SongMetadataFileError
 
 FLAC_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.flac")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")
 UNEXISTING_PATH = Path("./tests/files/test.flac")
 
+my_vcr = generate_vcr("test_flac_song_file")
 
 def test_flac_title():
     new_title = "Title"
@@ -134,6 +135,7 @@ def test_flac_date():
         assert song_file.date == [new_date]
 
 
+@my_vcr.use_cassette
 def test_flac_cover_url():
     new_cover_url = "https://unsplash.com/photos/n3nexpX1ymE"
 

@@ -1,13 +1,34 @@
-__all__ = ["BaseSongFile"]
-
+from __future__ import annotations
 
 import abc
 from typing import List, Optional, Protocol, Tuple
 
+__all__ = ["BaseSongFile"]
+
 
 class BaseSongFile(Protocol):
     @abc.abstractmethod
+    def __enter__(self) -> BaseSongFile:
+        ...
+
+    @abc.abstractmethod
+    def __exit__(self, type, value, traceback):
+        ...
+
+    @abc.abstractmethod
     def save(self) -> None:
+        ...
+        
+    # Title
+    
+    @property
+    @abc.abstractmethod
+    def title(self) -> Optional[List[str]]:
+        ...
+        
+    @title.setter
+    @abc.abstractmethod
+    def title(self, new_title: Optional[List[str]]) -> None:
         ...
 
     # Artists
@@ -177,7 +198,7 @@ class BaseSongFile(Protocol):
     @abc.abstractmethod
     def copyright_text(self, new_copyright_text: Optional[List[str]]) -> None:
         ...
-        
+
     ## Origin website
 
     @property

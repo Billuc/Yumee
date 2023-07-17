@@ -6,23 +6,22 @@ __all__ = ["SongMetadata"]
 
 @dataclass
 class SongMetadata:
-    title: str
-    artist: str
-    artists: List[str]
-    album_name: Optional[str]
-    album_artist: Optional[str]
-    track_number: int
-    track_count: int
-    disc_number: int
-    disc_count: int
-    genres: List[str]
-    date: str
-    year: int
-    explicit: bool
-    cover_url: Optional[str]
-    lyrics: Optional[str]
-    download_url: Optional[str]
-    url: Optional[str]
-    publisher: Optional[str]
-    popularity: Optional[int]
-    copyright_text: Optional[str]
+    title: Optional[str] = None
+    artist: Optional[str] = None
+    artists: Optional[List[str]] = None
+    album_name: Optional[str] = None
+    album_artist: Optional[str] = None
+    track_number: Optional[int] = None
+    track_count: Optional[int] = None
+    disc_number: Optional[int] = None
+    disc_count: Optional[int] = None
+    genres: Optional[List[str]] = None
+    date: Optional[str] = None
+    year: Optional[int] = None
+    explicit: Optional[bool] = None
+    cover_url: Optional[str] = None
+    lyrics: Optional[str] = None
+    comments: Optional[List[str]] = None
+    origin_website: Optional[str] = None
+    publisher: Optional[str] = None
+    copyright_text: Optional[str] = None

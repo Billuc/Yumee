@@ -1,15 +1,15 @@
-from .classes import EmbedMetadataCommand, SongMetadata
+from .classes import SongMetadata
 from .di import add_song_metadata_embedder
 from .errors import SongMetadataError, SongMetadataFileError
-from .interfaces import BaseMetadataEmbedder
+from .interfaces import BaseSongFile, BaseSongFileProvider
 from .main import SongMetadataEmbedder
 
 __all__ = [
-    "EmbedMetadataCommand",
     "SongMetadata",
     "add_song_metadata_embedder",
     "SongMetadataError",
     "SongMetadataFileError",
-    "BaseMetadataEmbedder",
+    "BaseSongFile",
+    "BaseSongFileProvider",
     "SongMetadataEmbedder",
 ]

@@ -1,18 +1,19 @@
 from pathlib import Path
 from typing import cast
-from pytest import fixture
 
 from mutagen.mp3 import EasyMP3, MP3
 from mutagen.id3 import ID3
 from tests.test_with_temp_file import temp_file
+from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import SongMetadata, Mp3SongFile
+from song_metadata_embedder.classes import Mp3SongFile
 from song_metadata_embedder.errors import SongMetadataFileError
 
 OPUS_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.opus")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")
 UNEXISTING_PATH = Path("./tests/files/test.mp3")
 
+my_vcr = generate_vcr('test_mp3_song_file')
 
 def test_mp3_title():
     new_title = "Title"
@@ -134,6 +135,7 @@ def test_mp3_date():
         assert song_file.date == [new_date]
 
 
+@my_vcr.use_cassette
 def test_mp3_cover_url():
     new_cover_url = "https://unsplash.com/photos/n3nexpX1ymE"
 

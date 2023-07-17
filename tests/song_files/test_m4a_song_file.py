@@ -1,16 +1,17 @@
 from pathlib import Path
-from pytest import fixture
 
 from mutagen.mp4 import MP4
 from tests.test_with_temp_file import temp_file
+from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import SongMetadata, M4ASongFile
+from song_metadata_embedder.classes import M4ASongFile
 from song_metadata_embedder.errors import SongMetadataFileError
 
 M4A_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.m4a")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")
 UNEXISTING_PATH = Path("./tests/files/test.m4a")
 
+my_vcr = generate_vcr('test_m4a_song_file')
 
 def test_m4a_title():
     new_title = "Title"
@@ -147,6 +148,7 @@ def test_m4a_explicit():
         assert song_file.explicit == new_explicit
 
 
+@my_vcr.use_cassette
 def test_m4a_cover_url():
     new_cover_url = "https://unsplash.com/photos/n3nexpX1ymE"
 

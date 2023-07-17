@@ -24,6 +24,12 @@ class AbstractSongFile(Generic[T], metaclass=abc.ABCMeta):
             self._audio_file: T = self._load()
         except Exception as ex:
             raise SongMetadataFileError(ex) from ex
+        
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, type, value, traceback):
+        self.save()
 
     @abc.abstractmethod
     def _load(self) -> T:

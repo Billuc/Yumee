@@ -1,15 +1,17 @@
 from pathlib import Path
-from pytest import fixture
 
 from mutagen.oggvorbis import OggVorbis
 from tests.test_with_temp_file import temp_file
+from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import SongMetadata, OggSongFile
+from song_metadata_embedder.classes import OggSongFile
 from song_metadata_embedder.errors import SongMetadataFileError
 
 OGG_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.ogg")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")
 UNEXISTING_PATH = Path("./tests/files/test.ogg")
+
+my_vcr = generate_vcr('test_ogg_song_file')
 
 
 def test_ogg_title():
@@ -134,6 +136,7 @@ def test_ogg_date():
         assert song_file.date == [new_date]
 
 
+@my_vcr.use_cassette
 def test_ogg_cover_url():
     new_cover_url = "https://unsplash.com/photos/n3nexpX1ymE"
 
