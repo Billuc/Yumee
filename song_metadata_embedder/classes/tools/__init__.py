@@ -1,0 +1,1 @@
+from .lrc_helper import LRCHelper

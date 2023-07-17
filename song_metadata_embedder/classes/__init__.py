@@ -15,6 +15,14 @@ from .handlers import (
     OggMetadataHandler,
     OpusMetadataHandler,
 )
+from .tools import LRCHelper
+from .song_files import (
+    FlacSongFile,
+    M4ASongFile,
+    Mp3SongFile,
+    OggSongFile,
+    OpusSongFile
+)
 
 __all__ = [
     "SongMetadata",

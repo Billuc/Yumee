@@ -1,3 +1,5 @@
-from .base_metadata_embedder import BaseMetadataEmbedder
+__all__ = ["BaseMetadataEmbedder", "BaseSongFile", "BaseSongFileProvider"]
 
-__all__ = ["BaseMetadataEmbedder"]
+from .base_metadata_embedder import BaseMetadataEmbedder
+from .base_song_file import BaseSongFile
+from .base_song_file_provider import BaseSongFileProvider

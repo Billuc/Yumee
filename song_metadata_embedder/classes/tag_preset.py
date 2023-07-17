@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 __all__ = ["TagPreset"]
 
@@ -25,3 +26,5 @@ class TagPreset:
     lyrics: str
     explicit: str
     woas: str
+    trackcount: Optional[str] = None
+    disccount: Optional[str] = None
