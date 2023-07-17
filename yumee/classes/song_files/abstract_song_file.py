@@ -7,8 +7,8 @@ from typing import Generic, List, Optional, Tuple, TypeVar
 
 from mutagen._file import FileType
 
-from song_metadata_embedder.classes import TagPreset
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import TagPreset
+from yumee.errors import SongMetadataFileError
 
 
 T = TypeVar("T", bound=FileType)
@@ -18,7 +18,7 @@ class AbstractSongFile(Generic[T], metaclass=abc.ABCMeta):
     def __init__(self, path: Path) -> None:
         self._path = str(path.resolve())
         self._extension = path.suffix
-        self._logger: logging.Logger = logging.getLogger("song_metadata_embedder")
+        self._logger: logging.Logger = logging.getLogger("yumee")
 
         try:
             self._audio_file: T = self._load()

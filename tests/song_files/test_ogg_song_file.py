@@ -4,8 +4,8 @@ from mutagen.oggvorbis import OggVorbis
 from tests.test_with_temp_file import temp_file
 from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import OggSongFile
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import OggSongFile
+from yumee.errors import SongMetadataFileError
 
 OGG_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.ogg")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")

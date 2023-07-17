@@ -2,7 +2,7 @@ import abc
 from typing import Callable
 from pathlib import Path
 
-from song_metadata_embedder.interfaces import BaseSongFile, BaseSongFileProvider
+from yumee.interfaces import BaseSongFile, BaseSongFileProvider
 
 __all__ = ["AbstractSongFileProvider"]
 

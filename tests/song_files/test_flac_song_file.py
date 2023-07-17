@@ -4,8 +4,8 @@ from mutagen.flac import FLAC
 from tests.test_with_temp_file import temp_file
 from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import FlacSongFile
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import FlacSongFile
+from yumee.errors import SongMetadataFileError
 
 FLAC_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.flac")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")

@@ -4,8 +4,8 @@ from mutagen.oggopus import OggOpus
 from tests.test_with_temp_file import temp_file
 from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import OpusSongFile
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import OpusSongFile
+from yumee.errors import SongMetadataFileError
 
 OPUS_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.opus")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")

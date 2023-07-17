@@ -1,16 +1,16 @@
-__all__ = ["OpusSongFile"]
+__all__ = ["OggSongFile"]
 
 import base64
 from typing import List, Optional, Tuple
 from mutagen.flac import Picture
-from mutagen.oggopus import OggOpus
+from mutagen.oggvorbis import OggVorbis
 import requests
 
-from song_metadata_embedder.classes import TagPreset
+from yumee.classes import TagPreset
 from .abstract_song_file import AbstractSongFile
 
 
-class OpusSongFile(AbstractSongFile[OggOpus]):
+class OggSongFile(AbstractSongFile[OggVorbis]):
     @property
     def tag_preset(self) -> TagPreset:
         return TagPreset(
@@ -38,8 +38,8 @@ class OpusSongFile(AbstractSongFile[OggOpus]):
             woas="woas",
         )
 
-    def _load(self) -> OggOpus:
-        return OggOpus(self._path)
+    def _load(self) -> OggVorbis:
+        return OggVorbis(self._path)
 
     # Download URL
 

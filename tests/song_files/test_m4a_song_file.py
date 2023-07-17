@@ -4,8 +4,8 @@ from mutagen.mp4 import MP4
 from tests.test_with_temp_file import temp_file
 from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import M4ASongFile
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import M4ASongFile
+from yumee.errors import SongMetadataFileError
 
 M4A_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.m4a")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")

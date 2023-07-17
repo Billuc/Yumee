@@ -1,12 +1,12 @@
 from .classes import SongMetadata
-from .di import add_song_metadata_embedder
+from .di import add_yumee
 from .errors import SongMetadataError, SongMetadataFileError
 from .interfaces import BaseSongFile, BaseSongFileProvider
 from .main import SongMetadataEmbedder
 
 __all__ = [
     "SongMetadata",
-    "add_song_metadata_embedder",
+    "add_yumee",
     "SongMetadataError",
     "SongMetadataFileError",
     "BaseSongFile",

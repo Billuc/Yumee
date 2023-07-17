@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from song_metadata_embedder import SongMetadataEmbedder, SongMetadataFileError, SongMetadata
-from song_metadata_embedder.classes import FlacSongFile, M4ASongFile, Mp3SongFile, OggSongFile, OpusSongFile
+from yumee import SongMetadataEmbedder, SongMetadataFileError, SongMetadata
+from yumee.classes import FlacSongFile, M4ASongFile, Mp3SongFile, OggSongFile, OpusSongFile
 
 from tests.test_with_temp_file import temp_file
 

@@ -1,10 +1,10 @@
 from pathlib import Path
 from taipan_di import ServiceCollection
 
-from song_metadata_embedder.classes import SongMetadata
-from song_metadata_embedder.di import add_song_metadata_embedder
-from song_metadata_embedder.errors import SongMetadataFileError
-from song_metadata_embedder.interfaces import BaseSongFile, BaseSongFileProvider
+from yumee.classes import SongMetadata
+from yumee.di import add_yumee
+from yumee.errors import SongMetadataFileError
+from yumee.interfaces import BaseSongFile, BaseSongFileProvider
 
 __all__ = ["SongMetadataEmbedder"]
 
@@ -12,7 +12,7 @@ __all__ = ["SongMetadataEmbedder"]
 class SongMetadataEmbedder:
     def __init__(self) -> None:
         services = ServiceCollection()
-        add_song_metadata_embedder(services)
+        add_yumee(services)
         provider = services.build()
 
         self._provider = provider.resolve(BaseSongFileProvider)

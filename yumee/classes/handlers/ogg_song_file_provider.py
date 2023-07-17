@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from song_metadata_embedder.classes.handlers import AbstractSongFileProvider
-from song_metadata_embedder.classes.song_files import OggSongFile
-from song_metadata_embedder.interfaces import BaseSongFile
+from yumee.classes.handlers import AbstractSongFileProvider
+from yumee.classes.song_files import OggSongFile
+from yumee.interfaces import BaseSongFile
 
 __all__ = ["OggSongFileProvider"]
 

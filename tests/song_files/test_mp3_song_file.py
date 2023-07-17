@@ -6,8 +6,8 @@ from mutagen.id3 import ID3
 from tests.test_with_temp_file import temp_file
 from tests.test_with_vcr import generate_vcr
 
-from song_metadata_embedder.classes import Mp3SongFile
-from song_metadata_embedder.errors import SongMetadataFileError
+from yumee.classes import Mp3SongFile
+from yumee.errors import SongMetadataFileError
 
 OPUS_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.opus")
 MP3_PATH = Path("./tests/files/Blasterjaxx, Hollywood Undead - Shadows.mp3")
