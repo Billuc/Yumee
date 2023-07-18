@@ -6,7 +6,7 @@ from mutagen.flac import Picture
 from mutagen.oggopus import OggOpus
 import requests
 
-from yumee.classes import TagPreset
+from yumee.data import TagPreset
 from .abstract_song_file import AbstractSongFile
 
 

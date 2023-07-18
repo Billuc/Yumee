@@ -4,7 +4,7 @@ from typing import List, Optional, Tuple
 from mutagen.flac import FLAC, Picture
 import requests
 
-from yumee.classes import TagPreset
+from yumee.data import TagPreset
 from .abstract_song_file import AbstractSongFile
 
 

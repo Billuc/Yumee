@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Yumee"
-version = "0.0.2"
+version = "0.0.3"
 description = "Yet Unother MEtadata Embedder"
 authors = ["Billuc <billuc@hotmail.fr>"]
 license = "MIT"

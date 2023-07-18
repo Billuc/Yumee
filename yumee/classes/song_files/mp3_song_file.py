@@ -9,7 +9,8 @@ from mutagen.id3 import ID3
 from mutagen.id3._frames import APIC, COMM, WOAS, USLT, SYLT
 from mutagen.id3._specs import Encoding
 
-from yumee.classes import TagPreset, LRCHelper
+from yumee.classes import LRCHelper
+from yumee.data import TagPreset
 from .abstract_song_file import AbstractSongFile
 
 
