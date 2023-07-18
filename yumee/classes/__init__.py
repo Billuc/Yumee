@@ -1,5 +1,3 @@
-from .song_metadata import SongMetadata
-from .tag_preset import TagPreset
 from .tools import LRCHelper
 
 from .handlers import (
@@ -12,8 +10,6 @@ from .handlers import (
 from .song_files import FlacSongFile, M4ASongFile, Mp3SongFile, OggSongFile, OpusSongFile
 
 __all__ = [
-    "SongMetadata",
-    "TagPreset",
     "LRCHelper",
     "FlacSongFile",
     "M4ASongFile",

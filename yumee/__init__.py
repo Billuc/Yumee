@@ -1,4 +1,4 @@
-from .classes import SongMetadata
+from .data import SongMetadata
 from .di import add_yumee
 from .errors import SongMetadataError, SongMetadataFileError
 from .interfaces import BaseSongFile, BaseSongFileProvider

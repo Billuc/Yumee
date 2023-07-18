@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import abc
 from typing import List, Optional, Protocol, Tuple
+from yumee.data import SongMetadata
 
 __all__ = ["BaseSongFile"]
 
@@ -17,6 +18,14 @@ class BaseSongFile(Protocol):
 
     @abc.abstractmethod
     def save(self) -> None:
+        ...
+        
+    @abc.abstractmethod
+    def embed(self, metadata: SongMetadata) -> None:
+        ...
+        
+    @abc.abstractmethod
+    def extract(self) -> SongMetadata:
         ...
 
     # Title

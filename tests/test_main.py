@@ -70,7 +70,8 @@ def test_embed():
     metadata_to_embed = SongMetadata(title="NEWTITLE", year=2001)
     
     with temp_file(FLAC_PATH) as tmp_path:
-        embedder.embed(tmp_path, metadata_to_embed)
+        song_file = embedder.open_file(tmp_path)
+        song_file.embed(metadata_to_embed)
         
         song_file = embedder.open_file(tmp_path)
         assert song_file.title == [metadata_to_embed.title]

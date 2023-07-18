@@ -33,9 +33,10 @@ There are 2 ways to use this library : using the SongMetadataEmbedder object or 
 
 ### Using SongMetadataEmbedder
 
-The library exposes the SongMetadataEmbedder class. This class has 2 method : `open_file` and `embed`.
+The library exposes the SongMetadataEmbedder class. This class has 1 method : `open_file`.
 
-`open_file` opens an audio file at a provided path and returns a `BaseSongFile` to manipulate its metadata. `embed` opens an audio file and modifies its metadata according to the data provided.
+`open_file` opens an audio file at a provided path and returns a `BaseSongFile` to manipulate its metadata.  
+Once you have a `BaseSongFile`, you have access to methods like `embed` or `extract`. `embed` modifies the metadata of the SongFile according to the data provided. `extract` returns the metadata that was embedded in the file.
 
 **Example 1 :**
 
@@ -62,8 +63,11 @@ embedder = SongMetadataEmbedder()
 path = Path("path/to/file.mp3")
 metadata = SongMetadata(title="New Title")
 
-embedder.embed(path, metadata)
+song_file = embedder.open_file(path)
+song_file.embed(metadata)
 ```
+
+*The 'embed' method automatically saves the modifications done. This is why I don't use 'open_file' with a 'with' statement.*
 
 ### Using DI
 
@@ -99,7 +103,7 @@ If there is something you want to see added or if something does not work as you
 
 Here is a list of features I have in mind and will be working on :
 
-- Generate SongMetadata from a SongFile
+- ~~Generate SongMetadata from a SongFile~~
 - Support Wav
 - ISRC tag
 - MP3 separator support

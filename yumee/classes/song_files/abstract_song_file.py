@@ -7,7 +7,7 @@ from typing import Generic, List, Optional, Tuple, TypeVar
 
 from mutagen._file import FileType
 
-from yumee.classes import TagPreset
+from yumee.data import TagPreset, SongMetadata
 from yumee.errors import SongMetadataFileError
 
 
@@ -43,6 +43,76 @@ class AbstractSongFile(Generic[T], metaclass=abc.ABCMeta):
     def save(self) -> None:
         self._audio_file.save()
         self._logger.debug("File at path %s saved !", self._path)
+        
+    def embed(self, metadata: SongMetadata) -> None:
+        if metadata.album_artist:
+            self.album_artist = [metadata.album_artist]
+        elif metadata.artist:
+            self.album_artist = [metadata.artist]
+
+        if metadata.album_name:
+            self.album_name = [metadata.album_name]
+        if metadata.artists:
+            self.artists = metadata.artists
+        if metadata.comments:
+            self.comments = metadata.comments
+        if metadata.copyright_text:
+            self.copyright_text = [metadata.copyright_text]
+        if metadata.cover_url:
+            self.cover_url = metadata.cover_url
+        if metadata.date:
+            self.date = [metadata.date]
+        if metadata.disc_number:
+            self.disc_number = (
+                metadata.disc_number,
+                metadata.disc_count if metadata.disc_count else metadata.disc_number,
+            )
+        if metadata.explicit:
+            self.explicit = metadata.explicit
+        if metadata.genres:
+            self.genres = metadata.genres
+        if metadata.lyrics:
+            self.lyrics = [metadata.lyrics]
+        if metadata.origin_website:
+            self.origin_website = [metadata.origin_website]
+        if metadata.publisher:
+            self.publisher = [metadata.publisher]
+        if metadata.title:
+            self.title = [metadata.title]
+        if metadata.track_number:
+            self.track_number = (
+                metadata.track_number,
+                metadata.track_count if metadata.track_count else metadata.track_number,
+            )
+        if metadata.year:
+            self.year = metadata.year
+            
+        self.save()
+            
+    def extract(self) -> SongMetadata:
+        metadata = SongMetadata(
+            title=self.title[0] if self.title else None,
+            artist=self.artists[0] if self.artists else None,
+            artists=self.artists,
+            album_name=self.album_name[0] if self.album_name else None,
+            album_artist=self.album_artist[0] if self.album_artist else None,
+            track_number=self.track_number[0] if self.track_number else None,
+            track_count=self.track_number[1] if self.track_number else None,
+            disc_number=self.disc_number[0] if self.disc_number else None,
+            disc_count=self.disc_number[1] if self.disc_number else None,
+            genres=self.genres,
+            date=self.date[0] if self.date else None,
+            year=self.year,
+            explicit=self.explicit,
+            cover_url=self.cover_url,
+            lyrics=self.lyrics[0] if self.lyrics else None,
+            comments=self.comments,
+            origin_website=self.origin_website[0] if self.origin_website else None,
+            publisher=self.publisher[0] if self.publisher else None,
+            copyright_text=self.copyright_text[0] if self.copyright_text else None
+        )
+        
+        return metadata
 
     # Artists
 

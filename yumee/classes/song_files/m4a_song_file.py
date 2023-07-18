@@ -4,7 +4,7 @@ from typing import List, Optional, Tuple, cast
 from mutagen.mp4 import MP4, MP4Cover
 import requests
 
-from yumee.classes import TagPreset
+from yumee.data import TagPreset
 from .abstract_song_file import AbstractSongFile
 
 
